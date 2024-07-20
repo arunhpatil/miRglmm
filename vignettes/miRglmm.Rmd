@@ -55,12 +55,13 @@ names(miRNA_data)[names(miRNA_data) == 'Sequence'] <- 'uniqueSequence'
 meta <- mapped <- read.csv("annotation.report.csv", header=TRUE)
 meta <- meta[c(1,6,7)]
 colnames(meta) <- c('sample_id', 'filtered_miRNA_reads', 'unique_miRNAs')
+# The sample groups for differential expression should accordingly be mentioned by the researcher as a new column. 
 rownames(meta) <- meta$sample_id
 
 # Preparing Summarized Experiment Object
 mirge_SE <- SummarizedExperiment(assays=list(counts=expressionCounts), colData=meta, rowData = miRNA_data)
 ```
-
+# To load an example data
 ```{r load_miRglmm}
 library("miRglmm")
 library("SummarizedExperiment")
